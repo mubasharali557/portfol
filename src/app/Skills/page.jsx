@@ -9,7 +9,7 @@ export default function Skills() {
     { name: "Next.js", level: "75%" },
     { name: "Node.js & Express", level: "80%" },
     { name: "MongoDB", level: "70%" },
-    { name: "Tailwind CSS", level: "90%" },
+    { name: "Tailwind CSS", level: "80%" },
   ];
 
   return (
