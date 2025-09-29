@@ -1,10 +1,8 @@
 "use client";
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Typed from "typed.js";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
 import { 
   FaFacebook, 
   FaLinkedin, 
@@ -12,10 +10,14 @@ import {
   FaGithub, 
   FaGlobe, 
   FaPaintBrush, 
-  FaCog 
+  FaCog,
+  FaBars,
+  FaTimes
 } from "react-icons/fa";
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const typed = new Typed(".text", {
       strings: [
@@ -32,7 +34,6 @@ export default function Home() {
     return () => typed.destroy();
   }, []);
 
-  // Variants for staggered animation of icons
   const iconVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -42,56 +43,51 @@ export default function Home() {
     }),
   };
 
+  const navLinks = ["Home", "About", "Skills", "Services", "Contact"];
+
   return (
     <div className="font-sans bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+
       {/* Navbar */}
       <nav className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
           <h1 className="text-2xl font-bold text-cyan-400">Mubashar Ali</h1>
-          <ul className="hidden md:flex gap-6 text-gray-300">
-            {[].map(
-              (item, i) => (
-                <li key={i}>
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    className="hover:text-cyan-400 transition"
-                  >
-                    {item}
-                  </a>
-                </li>
-              )
-            )}
-          </ul>
-          <a
-            href="Hero">
-            Home
-          </a>
-          
-       <a
-            href="About">
-            About
-          </a>
-       
-       <a
-            href="Skills">
-            Skills
-          </a>
-           <a
-            href="Services">
-            Services
-          </a>
-        <a
-            href="Contact">
-            Contact 
-          </a>
 
-           <a
-            href="Contact"
-            className="bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600 shadow-md transition"
-          >
-            Contact Me
-          </a>
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex gap-6 text-gray-300">
+            {navLinks.map((item, i) => (
+              <li key={i}>
+                <a href={`#${item.toLowerCase()}`} className="hover:text-cyan-400 transition">
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            <button onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <ul className="md:hidden flex flex-col gap-4 px-6 pb-4 bg-gray-900/95 text-gray-300">
+            {navLinks.map((item, i) => (
+              <li key={i}>
+                <a
+                  href={`#${item.toLowerCase()}`}
+                  className="block py-2 hover:text-cyan-400 transition"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </nav>
 
       {/* Home Section */}
@@ -100,10 +96,8 @@ export default function Home() {
         className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-16 min-h-screen pt-28 gap-10 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/image.jpg')" }}
       >
-        {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -133,8 +127,8 @@ export default function Home() {
               { icon: <FaGithub />, link: "https://github.com/mubasharali557" },
             ].map((item, i) => (
               <motion.a
-                    key={i}
-                    href={item.link}
+                key={i}
+                href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-cyan-400 transition"
@@ -150,7 +144,7 @@ export default function Home() {
           </div>
 
           <a
-            href="About"
+            href="#about"
             className="bg-cyan-500 px-6 py-3 rounded-lg inline-block hover:bg-cyan-600 shadow-lg transition"
           >
             More About Me
@@ -175,47 +169,48 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-      {/* Services Section */}
- 
-    <section id="services" className="px-6 md:px-16 py-20 bg-gray-950">
-      <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12">
-        My Services
-      </h2>
 
-      <div className="grid md:grid-cols-4 gap-8">
-        {[
-          {
-            icon: <FaGlobe className="text-5xl text-cyan-400" />,
-            title: "Full Stack Development",
-            desc: "Building responsive, fast, and scalable web applications tailored to your needs.",
-          },
-          {
-            icon: <FaPaintBrush className="text-5xl text-yellow-400" />,
-            title: "Frontend Development",
-            desc: "Crafting intuitive and user-friendly designs with modern tools and practices.",
-          },
-          {
-            icon: <FaCog className="text-5xl text-gray-300" />,
-            title: "Backend Development",
-            desc: "Creating robust, secure, and scalable server-side applications and APIs.",
-          },
-          {
-            icon: <FaGithub className="text-5xl text-orange-500" />,
-            title: "GitHub",
-            desc: "Managing repositories, version control, and collaborative development.",
-          },
-        ].map((service, i) => (
-          <div
-            key={i}
-            className="bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-cyan-500/20 transition text-center"
-          >
-            <div className="flex justify-center mb-4">{service.icon}</div>
-            <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-            <p className="text-gray-400">{service.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+      {/* Services Section */}
+      <section id="services" className="px-6 md:px-16 py-20 bg-gray-950">
+        <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12">
+          My Services
+        </h2>
+
+        <div className="grid md:grid-cols-4 gap-8">
+          {[
+            {
+              icon: <FaGlobe className="text-5xl text-cyan-400" />,
+              title: "Full Stack Development",
+              desc: "Building responsive, fast, and scalable web applications tailored to your needs.",
+            },
+            {
+              icon: <FaPaintBrush className="text-5xl text-yellow-400" />,
+              title: "Frontend Development",
+              desc: "Crafting intuitive and user-friendly designs with modern tools and practices.",
+            },
+            {
+              icon: <FaCog className="text-5xl text-gray-300" />,
+              title: "Backend Development",
+              desc: "Creating robust, secure, and scalable server-side applications and APIs.",
+            },
+            {
+              icon: <FaGithub className="text-5xl text-orange-500" />,
+              title: "GitHub",
+              desc: "Managing repositories, version control, and collaborative development.",
+            },
+          ].map((service, i) => (
+            <div
+              key={i}
+              className="bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-cyan-500/20 transition text-center"
+            >
+              <div className="flex justify-center mb-4">{service.icon}</div>
+              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+              <p className="text-gray-400">{service.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Skills Section */}
       <section id="skills" className="px-6 md:px-16 py-20">
         <h1 className="text-4xl font-bold text-center">
@@ -278,9 +273,6 @@ export default function Home() {
           </form>
         </div>
       </section>
-
-      {/* Footer */}
-      
     </div>
   );
 }
