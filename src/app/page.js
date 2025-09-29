@@ -110,15 +110,15 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="relative z-10 space-y-6 max-w-xl"
         >
-          <h3 className="text-lg">👋 Hello, It's Me</h3>
+          <h3 className="text-lg">👋 Hello Its Me</h3>
           <h1 className="text-5xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text">
             Mubashar Ali
           </h1>
           <h3 className="text-2xl">
-            And I'm a <span className="text-cyan-400 text"></span>
+            And Im a <span className="text-cyan-400 text"></span>
           </h3>
           <p className="text-gray-300 leading-relaxed">
-            I'm a Full Stack Developer with a year of experience, passionate
+            Im a Full Stack Developer with a year of experience passionate
             about building dynamic web applications. I enjoy tackling challenges
             and continuously improving my skills in both front-end and back-end
             technologies.
