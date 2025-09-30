@@ -193,10 +193,10 @@ export default function Home() {
             Mubashar Ali
           </h1>
           <h3 className="text-2xl text-gray-200">
-            And I'm a <span className="text-cyan-400 text"></span>
+            And I m a <span className="text-cyan-400 text"></span>
           </h3>
           <p className="text-gray-300 leading-relaxed">
-            I'm a Full Stack Developer with a year of experience, passionate
+            I m a Full Stack Developer with a year of experience, passionate
             about building dynamic web applications. I enjoy tackling challenges
             and continuously improving my skills in both front-end and back-end
             technologies.
@@ -295,7 +295,7 @@ export default function Home() {
               scalable applications.
             </p>
             <p>
-              When I'm not coding, you can find me exploring new technologies,
+              When I m not coding, you can find me exploring new technologies,
               contributing to open-source projects, or continuously learning to
               stay updated with the ever-evolving tech landscape.
             </p>
@@ -432,10 +432,10 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h4 className="text-2xl mb-6 text-cyan-400">Let's work together ✨</h4>
+              <h4 className="text-2xl mb-6 text-cyan-400">Let s work together ✨</h4>
               <p className="text-gray-300 text-lg mb-6">
                 Feel free to reach out for collaborations or just a friendly hello.
-                I'm always open to discussing new projects and opportunities.
+                I m always open to discussing new projects and opportunities.
               </p>
               <ul className="space-y-4 text-gray-300">
                 <li className="flex items-center gap-3 text-lg">
