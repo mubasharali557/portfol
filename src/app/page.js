@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Typed from "typed.js";
 import Image from "next/image";
 import { motion } from "framer-motion";
+
 import { 
   FaFacebook, 
   FaLinkedin, 
@@ -10,13 +11,13 @@ import {
   FaGithub, 
   FaGlobe, 
   FaPaintBrush, 
-  FaCog,
-  FaBars,
-  FaTimes
+  FaCog, 
+  FaBars, 
+  FaTimes 
 } from "react-icons/fa";
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const typed = new Typed(".text", {
@@ -43,11 +44,16 @@ export default function Home() {
     }),
   };
 
-  const navLinks = ["Home", "About", "Skills", "Services", "Contact"];
+  const navItems = [
+    { name: "Home", link: "Hero" },
+    { name: "About", link: "About" },
+    { name: "Skills", link: "Skills" },
+    { name: "Services", link: "Services" },
+    { name: "Contact", link: "Contact" },
+  ];
 
   return (
-    <div className="font-sans bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-
+    <div className="font-sans bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white scroll-smooth">
       {/* Navbar */}
       <nav className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
@@ -55,38 +61,60 @@ export default function Home() {
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex gap-6 text-gray-300">
-            {navLinks.map((item, i) => (
+            {navItems.map((item, i) => (
               <li key={i}>
-                <a href={`#${item.toLowerCase()}`} className="hover:text-cyan-400 transition">
-                  {item}
+                <a href={item.link} className="hover:text-cyan-400 transition">
+                  {item.name}
                 </a>
               </li>
             ))}
           </ul>
 
-          {/* Mobile Hamburger */}
-          <div className="md:hidden">
-            <button onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
+          {/* Hamburger for Mobile */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-300 text-2xl focus:outline-none"
+            >
+              {isOpen ? <FaTimes /> : <FaBars />}
             </button>
           </div>
+
+          {/* Desktop Contact Button */}
+          <a
+            href="#contact"
+            className="hidden md:inline-block bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600 shadow-md transition"
+          >
+            Contact Me
+          </a>
         </div>
 
         {/* Mobile Menu */}
-        {menuOpen && (
-          <ul className="md:hidden flex flex-col gap-4 px-6 pb-4 bg-gray-900/95 text-gray-300">
-            {navLinks.map((item, i) => (
-              <li key={i}>
+        {isOpen && (
+          <div className="md:hidden bg-gray-900/95 backdrop-blur-md px-6 py-4">
+            <ul className="flex flex-col gap-4 text-gray-300">
+              {navItems.map((item, i) => (
+                <li key={i}>
+                  <a
+                    href={item.link}
+                    className="block hover:text-cyan-400 transition"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+              <li>
                 <a
-                  href={`#${item.toLowerCase()}`}
-                  className="block py-2 hover:text-cyan-400 transition"
-                  onClick={() => setMenuOpen(false)}
+                  href="#contact"
+                  className="block bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600 shadow-md transition"
+                  onClick={() => setIsOpen(false)}
                 >
-                  {item}
+                  Contact Me
                 </a>
               </li>
-            ))}
-          </ul>
+            </ul>
+          </div>
         )}
       </nav>
 
@@ -109,16 +137,15 @@ export default function Home() {
             Mubashar Ali
           </h1>
           <h3 className="text-2xl">
-            And Im a <span className="text-cyan-400 text"></span>
+            And I'm a <span className="text-cyan-400 text"></span>
           </h3>
           <p className="text-gray-300 leading-relaxed">
-            Im a Full Stack Developer with a year of experience passionate
+            I'm a Full Stack Developer with a year of experience, passionate
             about building dynamic web applications. I enjoy tackling challenges
             and continuously improving my skills in both front-end and back-end
             technologies.
           </p>
 
-          {/* Social Icons */}
           <div className="flex gap-5 text-3xl">
             {[ 
               { icon: <FaFacebook />, link: "https://facebook.com" },
@@ -151,7 +178,6 @@ export default function Home() {
           </a>
         </motion.div>
 
-        {/* Profile Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -170,8 +196,21 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="px-6 md:px-16 py-20 bg-gray-950 text-white">
+        <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12">
+          About Me
+        </h2>
+        <p className="max-w-3xl mx-auto text-gray-300 text-lg leading-relaxed">
+          I am Mubashar Ali, a passionate Full Stack Developer with expertise in
+          building modern, responsive web applications using the latest
+          technologies. I thrive on solving complex problems and delivering
+          high-quality solutions.
+        </p>
+      </section>
+
       {/* Services Section */}
-      <section id="services" className="px-6 md:px-16 py-20 bg-gray-950">
+      <section id="services" className="px-6 md:px-16 py-20 bg-gray-900">
         <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12">
           My Services
         </h2>
@@ -201,7 +240,7 @@ export default function Home() {
           ].map((service, i) => (
             <div
               key={i}
-              className="bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-cyan-500/20 transition text-center"
+              className="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-cyan-500/20 transition text-center"
             >
               <div className="flex justify-center mb-4">{service.icon}</div>
               <h3 className="text-xl font-bold mb-2">{service.title}</h3>
@@ -212,7 +251,7 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="px-6 md:px-16 py-20">
+      <section id="skills" className="px-6 md:px-16 py-20 bg-gray-950">
         <h1 className="text-4xl font-bold text-center">
           My <span className="text-cyan-400">Skills</span>
         </h1>
@@ -273,6 +312,11 @@ export default function Home() {
           </form>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-400 py-6 text-center">
+        © 2025 Mubashar Ali. All rights reserved.
+      </footer>
     </div>
   );
 }
