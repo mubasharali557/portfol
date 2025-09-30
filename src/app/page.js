@@ -106,7 +106,7 @@ export default function Home() {
               ))}
               <li>
                 <a
-                  href="#contact"
+                  href="Contact"
                   className="block bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600 shadow-md transition"
                   onClick={() => setIsOpen(false)}
                 >
@@ -137,10 +137,10 @@ export default function Home() {
             Mubashar Ali
           </h1>
           <h3 className="text-2xl">
-            And I'm a <span className="text-cyan-400 text"></span>
+            And Im a <span className="text-cyan-400 text"></span>
           </h3>
           <p className="text-gray-300 leading-relaxed">
-            I'm a Full Stack Developer with a year of experience, passionate
+            Im a Full Stack Developer with a year of experience, passionate
             about building dynamic web applications. I enjoy tackling challenges
             and continuously improving my skills in both front-end and back-end
             technologies.
