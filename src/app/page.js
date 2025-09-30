@@ -606,14 +606,13 @@ export default function Home() {
 
   // CV Download function
   const handleDownloadCV = () => {
-    // Create a temporary link element
-    const link = document.createElement('a');
-    link.href = '/Mubashar.pdf'; // Yahan apne CV file ka path daalen
-    link.download = '/Mubashar.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const link = document.createElement("a");
+  link.href = "/Mubashar.pdf"; // File directly from public folder
+  link.download = "Mubashar.pdf"; // Suggested file name for download
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
   const navItems = [
     { name: "Home", link: "#home" },
@@ -823,7 +822,7 @@ export default function Home() {
           <div className="relative w-72 h-72 md:w-96 md:h-96">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r blur-2xl animate-pulse"></div>
             <Image
-              src="/Mubashar.png"
+              src="/Mubashar.jpg"
               alt="Mubashar Ali - Full Stack Developer"
               width={384}
               height={384}
